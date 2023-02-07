@@ -35,14 +35,6 @@ namespace RutonyChat
 
             DoAction(Param, Args);
         }
-
-        public void RunScript(string Site, string Usename, string Text, Dictionary<string, string> Param)
-        {
-            foreach (var p in Param)
-            {
-                RutonyBot.SayToWindow(string.Format("Param {0} = {1}", p.Key, p.Value));
-            }
-        }
         #endregion
 
         #region Client Methods
