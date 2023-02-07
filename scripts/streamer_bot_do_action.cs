@@ -5,6 +5,12 @@ using System.Collections.Generic;
 using System;
 using Newtonsoft.Json;
 
+///-------------------------------------------------------------------
+///   Module:     StreamerBotIntegration
+///   Author:     play_code (https://twitch.tv/play_code)
+///   Email:      info@play-code.live
+///   Repository: https://github.com/play-code-live/rutony-streamerBot
+///-------------------------------------------------------------------
 namespace RutonyChat
 {
     public class Script

@@ -5,11 +5,17 @@ using System.Collections.Generic;
 using System;
 using Newtonsoft.Json;
 
+///-------------------------------------------------------------------
+///   Module:     StreamerBotIntegration
+///   Author:     play_code (https://twitch.tv/play_code)
+///   Email:      info@play-code.live
+///   Repository: https://github.com/play-code-live/rutony-streamerBot
+///-------------------------------------------------------------------
 namespace RutonyChat
 {
     public class Script
     {
-        private const string ScriptName = "Обработчик донатов";
+        private const string ScriptName = "РћР±СЂР°Р±РѕС‚С‡РёРє РґРѕРЅР°С‚РѕРІ";
         private const string targetEventType = eventTypeDonate;
 
         private const string streamerBotWebserverAddress = "http://localhost:7474/";
@@ -27,17 +33,17 @@ namespace RutonyChat
         {
             if (string.IsNullOrEmpty(param))
             {
-                RutonyBot.SayToWindow("Необходимо указать целевое действие в параметрах автономного скрипта интеграции StreamerBot");
-                throw new InvalidDataException("Необходим параметр для Action");
+                RutonyBot.SayToWindow("РќРµРѕР±С…РѕРґРёРјРѕ СѓРєР°Р·Р°С‚СЊ С†РµР»РµРІРѕРµ РґРµР№СЃС‚РІРёРµ РІ РїР°СЂР°РјРµС‚СЂР°С… Р°РІС‚РѕРЅРѕРјРЅРѕРіРѕ СЃРєСЂРёРїС‚Р° РёРЅС‚РµРіСЂР°С†РёРё StreamerBot");
+                throw new InvalidDataException("РќРµРѕР±С…РѕРґРёРј РїР°СЂР°РјРµС‚СЂ РґР»СЏ Action");
             }
 
             BackgroundWatcherAction = param;
-            RutonyBot.SayToWindow(string.Format("StreamerBot: {0} запущен", ScriptName));
+            RutonyBot.SayToWindow(string.Format("StreamerBot: {0} Р·Р°РїСѓС‰РµРЅ", ScriptName));
         }
 
         public void Closing()
         {
-            RutonyBot.SayToWindow(string.Format("StreamerBot: {0} остановлен", ScriptName));
+            RutonyBot.SayToWindow(string.Format("StreamerBot: {0} РѕСЃС‚Р°РЅРѕРІР»РµРЅ", ScriptName));
         }
 
         public static void NewDonate(string Site, string Name, string Text, float Amount, string Currency)
@@ -73,7 +79,7 @@ namespace RutonyChat
         {
             if (string.IsNullOrEmpty(Action))
             {
-                RutonyBot.SayToWindow("Ошибка. Необходимо указать название Action в параметрах вызова скрипта");
+                RutonyBot.SayToWindow("РћС€РёР±РєР°. РќРµРѕР±С…РѕРґРёРјРѕ СѓРєР°Р·Р°С‚СЊ РЅР°Р·РІР°РЅРёРµ Action РІ РїР°СЂР°РјРµС‚СЂР°С… РІС‹Р·РѕРІР° СЃРєСЂРёРїС‚Р°");
                 return;
             }
 
@@ -88,18 +94,9 @@ namespace RutonyChat
             }
             catch (Exception e)
             {
-                int n;
-                if (int.TryParse(Action, out n))
-                {
-                    // RutonyChat ломает обработку параметра, если завязываться на донат
-                    // Вместо указанного параметра он подсовывает сумму доната
-                    // Поэтому подобные случаи приходиться игнорировать
-                    return;
-                }
-                RutonyBot.SayToWindow(
-                    string.Format("Ошибка. Не удалось вызвать Action StreamerBot: {0}", e.Message)
+                RutonyBot.SayToWindow(  
+                    string.Format("РћС€РёР±РєР°. РќРµ СѓРґР°Р»РѕСЃСЊ РІС‹Р·РІР°С‚СЊ Action StreamerBot: {0}", e.Message)
                 );
-
             }
         }
 
