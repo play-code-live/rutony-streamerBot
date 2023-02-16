@@ -85,7 +85,8 @@ namespace RutonyChat
 
             var Payload = new DoActionRequest
             {
-                action = new DoActionRequestBody { name = Action, args = Args }
+                action = new DoActionRequestBody { name = Action },
+                args   = Args
             };
 
             try
@@ -109,7 +110,8 @@ namespace RutonyChat
 
             if (Payload != null)
             {
-                var jsonPayload = JsonConvert.SerializeObject(Payload);
+                var jsonSerializerSettings = new JsonSerializerSettings{StringEscapeHandling = StringEscapeHandling.EscapeNonAscii};
+                var jsonPayload = JsonConvert.SerializeObject(Payload, jsonSerializerSettings);
                 var requestBytes = Encoding.ASCII.GetBytes(jsonPayload);
                 webRequest.ContentLength = requestBytes.Length;
                 Stream requestStream = webRequest.GetRequestStream();
@@ -146,13 +148,12 @@ namespace RutonyChat
     public struct DoActionRequest
     {
         public DoActionRequestBody action { get; set; }
+        public Dictionary<string, string> args { get; set; }
     }
 
     public struct DoActionRequestBody
     {
         public string name { get; set; }
-
-        public Dictionary<string, string> args { get; set; }
     }
     #endregion
 }
