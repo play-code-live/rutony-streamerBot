@@ -20,9 +20,9 @@ namespace RutonyChat
 
         #region Remote Control Script
         // Скрипт Удаленного управления
-        public void RunScript(string Text, string Param)
+        public void RunScript(string Username, string Param)
         {
-            var Args = new Dictionary<string, string>() { { "message", Text } };
+            var Args = new Dictionary<string, string>() { { "user", Username }, { "userName", Username } };
             DoAction(Param, Args);
         }
         #endregion
